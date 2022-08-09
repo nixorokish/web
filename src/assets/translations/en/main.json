@@ -302,6 +302,12 @@
           "yieldyDescription": "Enter the amount of %{asset} you would like to withdraw. Subsequent withdrawals will be combined and reset the withdrawal time."
         }
       },
+      "claim": {
+        "info": {
+          "title": "Claim Info",
+          "description": "Withdraw the accrued farmed tokens"
+        }
+      },
       "approve": {
         "title": "Approve"
       },
@@ -635,6 +641,9 @@
         "failed": "There was an issue with your deposit."
       }
     },
+    "claim": {
+      "claimFrom": "Claim From %{opportunity}"
+    },
     "stake": {
       "amountToStake": "Amount To Stake",
       "stakeYour": "Stake your %{opportunity}",
@@ -699,6 +708,7 @@
       "amountToDeposit": "Amount To Deposit",
       "amountToStake": "Amount To Stake",
       "amountToWithdraw": "Amount To Withdraw",
+      "amountToClaim": "Amount To Claim",
       "withdrawFrom": "Withdraw From",
       "depositTo": "Deposit To",
       "averageApy": "Average APY",

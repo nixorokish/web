@@ -1,4 +1,5 @@
 import { FoxyProvider } from 'features/defi/contexts/FoxyProvider/FoxyProvider'
+import { IdleProvider } from 'features/defi/contexts/IdleProvider/IdleProvider'
 import { YearnProvider } from 'features/defi/contexts/YearnProvider/YearnProvider'
 import { FoxEthLpManager } from 'features/defi/providers/fox-eth-lp/components/FoxEthLpManager/FoxEthLpManager'
 import React, { useMemo } from 'react'
@@ -7,6 +8,7 @@ import { useBrowserRouter } from 'hooks/useBrowserRouter/useBrowserRouter'
 import { DefiModal } from '../../components/DefiModal/DefiModal'
 import { CosmosManager } from '../../providers/cosmos/components/CosmosManager/CosmosManager'
 import { FoxyManager } from '../../providers/foxy/components/FoxyManager/FoxyManager'
+import { IdleManager } from '../../providers/idle/components/IdleManager/IdleManager'
 import { YearnManager } from '../../providers/yearn/components/YearnManager/YearnManager'
 import {
   DefiManagerContextProps,
@@ -19,6 +21,7 @@ import {
 const DefiManagerContext = React.createContext<DefiManagerContextProps | null>(null)
 
 const DefiModules = {
+  [DefiProvider.Idle]: IdleManager,
   [DefiProvider.Yearn]: YearnManager,
   [DefiProvider.ShapeShift]: FoxyManager,
   [DefiProvider.FoxEthLP]: FoxEthLpManager,
@@ -49,10 +52,12 @@ export function DefiManagerProvider({ children }: DefiManagerProviderProps) {
   return (
     <DefiManagerContext.Provider value={null}>
       <YearnProvider>
-        <FoxyProvider>
-          {children}
-          {provider && renderModules}
-        </FoxyProvider>
+        <IdleProvider>
+          <FoxyProvider>
+            {children}
+            {provider && renderModules}
+          </FoxyProvider>
+        </IdleProvider>
       </YearnProvider>
     </DefiManagerContext.Provider>
   )
